@@ -1,0 +1,141 @@
+body {
+    font-family: 'Dosis', sans-serif;
+    color: #404142;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.profile-image {
+    width: 200px;
+}
+
+.mt-2 {
+    margin-top: 2%;
+}
+.mb-2{
+    margin-top: 2%;
+}
+.capitalize {
+    text-transform: capitalize;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.main-content {
+    margin-top: 15%;
+}
+
+.main-content-small {
+    margin-top: 7%;
+}
+
+.main-content-2 {
+    margin-top: 11%;
+}
+
+.negative-margin {
+    margin-top: -10%;
+}
+
+.negative-margin-2 {
+    margin-top: -20%;
+}
+
+.schedule {
+    margin-top: 3%;
+}
+
+.thumbnail {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.circle-thumbnail {
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    padding: 5px;
+}
+
+.top-margin {
+    margin-top: 5%;
+}
+
+.bottom-margin-small {
+    margin-bottom: 2%;
+}
+
+.block {
+    display: block;
+}
+
+.flex-container {
+    display: flex;
+    height: 400px;
+}
+
+.flex-items {
+    margin: auto;
+}
+
+.myborder {
+    border: solid #1565C0 3px;
+}
+
+.thinborder {
+    border: solid #1565C0 1px;
+}
+.right-border{
+    border-right: solid white 1px;
+}
+.left-border{
+    border-left: solid white 1px;
+}
+
+
+
+@media only screen and (min-width: 600px) and (max-width: 992px) {
+    .negative-margin {
+        margin-top: -20%;
+    }
+    .negative-margin-2{
+        margin-top: -30%;
+    }
+
+    .main-content {
+        margin-top: 17%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .negative-margin {
+        margin-top: -40%;
+    }
+    .negative-margin-2{
+        margin-top: -50%;
+    }
+
+    .main-content {
+        margin-top: 20%;
+    }
+}

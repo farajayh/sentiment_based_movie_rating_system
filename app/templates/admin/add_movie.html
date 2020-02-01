@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="">
+<link rel="icon" type="image/png" href="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Movie</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='materialize/css/materialize.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dosis-font.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='iconfont/material-icons.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='slick/slick.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='slick/slick-theme.css')}}">
+</head>
+<body>
+<header class="navbar-fixed">
+        <nav class="blue darken-3">
+            <div class="nav-wrapper">
+                <div class="container">
+                    <ul class="brand-logo center">
+                    <h4>Sentiment Based Movie Rating System </h4>
+                    </ul>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                    <li class="waves-effect waves-light"><a href="{{url_for('admin.home')}}">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 l6 offset-l3">
+                <div class="card-top-margin card-bottom-margin">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="center">
+                                <h5 class="capitalize">Add Movie</h5>
+                            </div>
+                        </div>
+                        <div class="card-content grey lighten-4">
+                            <div class="center"> <h6 class="red-text"> 
+                                {% with message=get_flashed_messages() %}
+                                {% if message %}
+                                    {% for msg in message %}
+                                        <h5>{{msg}}<h5>
+                                    {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </h6> </div>
+                            <form enctype="multipart/form-data" action="{{url_for('admin.add_movie')}}" method="post" novalidate>
+                                <div class="input-field col s12">
+                                    Movie Name<br><input type="text" name="movie_name" required>
+                                </div>
+                                <div class="input-field col s12">
+                                    <select name="genre" required>
+                                        <option value="" Disabled selected>Genre</option>
+                                        <option value="Comedy/Drama">Comedy/Drama</option>
+                                        <option value="Romance">Romance</option>
+                                        <option value="Action">Action</option>
+                                        <option value="Thriller/Horror">Thriller/Horror</option>
+                                        <option value="Animation">Animation</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s12">
+                                    <div class="file-field input-field">
+                                        <div class="btn blue darken-3">
+                                             <span>Movie Cover</span>
+                                             <input type="file" name="movie_cover" accept=".jpeg, .png, .jpg, .gif">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text" name="movie_cover">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-field col s12">
+                                    Description <br><textarea name="movie_desc" class="materialize-textarea" required></textarea>
+                                </div>
+                                <div class="center">
+                                    <input type=submit class="btn blue darken-3" value="submit">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <style>
+        .capitalize {
+            text-transform: capitalize;
+        }
+
+        .card-top-margin {
+            margin-top: 40%;
+        }
+
+        .card-bottom-margin {
+            margin-bottom: 5%;
+        }
+
+    </style> 
+    </main> 
+       <footer class="page-footer blue darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div class="center">
+                            <h5 class="white-text capitalize">Lagos State University</h5>
+                    </div>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright center">
+            <div class="container">
+                Copyright © 2019
+            </div>
+        </div>
+    </footer>   
+        <script src="{{url_for('static', filename='js/jquery-3.2.1.js')}}"></script>
+        <script src="{{url_for('static', filename='materialize/js/materialize.min.js')}}"></script>
+        <script src="{{url_for('static', filename='js/materializescript.js')}}"></script>
+        <script>
+            $(document).ready(function() {
+                $('select').material_select();
+            });
+        </script>
+</body>
+</html>

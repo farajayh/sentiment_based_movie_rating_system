@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="">
+<link rel="icon" type="image/png" href="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='materialize/css/materialize.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dosis-font.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='iconfont/material-icons.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='slick/slick.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='slick/slick-theme.css')}}">
+</head>
+<body>
+<header class="navbar-fixed">
+        <nav class="blue darken-3">
+            <div class="nav-wrapper">
+                <div class="container">
+                    <ul class="center">
+                    <h4>Sentiment Based Movie Rating System </h4>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 l6 offset-l3">
+                <div class="card-top-margin card-bottom-margin">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="center">
+                                <h5 class="capitalize">Register</h5>
+                            </div>
+                        </div>
+                        <div class="card-content grey lighten-4">
+                            <div class="center"> <h6 class="red-text"> 
+                                    {% with message=get_flashed_messages() %}
+                                    {% if message %}
+                                        {% for msg in message %}
+                                            <h5>{{msg}}<h5>
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% endwith %}
+                            </h6> </div>
+                            <form action="{{url_for('auth.register')}}" method="post" novalidate>
+                                {{ form.hidden_tag() }}
+                                <div class="input-field col s12">
+                                        {{ form.email.label }}<br>
+                                        {{ form.email(size=32) }}
+                                </div>
+                                <div class="input-field col s12">
+                                        {{ form.username.label }}<br>
+                                        {{ form.username(size=32) }}
+                                </div>
+                                <div class="input-field col s12">
+                                        {{ form.password.label }}<br>
+                                        {{ form.password(size=32) }}
+                                </div>
+                                <div class="input-field col s12">
+                                        {{ form.conf_password.label }}<br>
+                                        {{ form.conf_password(size=32) }}
+                                </div>
+                                <div class="center">
+                                    <div class="btn blue darken-3">
+                                            {{ form.submit() }}
+                                            {{ form.csrf_token }}
+                                    </div>
+                                </div>
+                                <h4>Already have an account?<h4><a href="{{url_for('auth.login')}}">Sign in</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <style>
+        .capitalize {
+            text-transform: capitalize;
+        }
+
+        .card-top-margin {
+            margin-top: 40%;
+        }
+
+        .card-bottom-margin {
+            margin-bottom: 5%;
+        }
+
+    </style> 
+    </main> 
+       <footer class="page-footer blue darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div class="center">
+                            <h5 class="white-text capitalize">Lagos State University</h5>
+                    </div>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright center">
+            <div class="container">
+                Copyright © 2019
+            </div>
+        </div>
+    </footer>   
+        <script src="{{url_for('static', filename='js/jquery-3.2.1.js')}}"></script>
+        <script src="{{url_for('static', filename='materialize/js/materialize.min.js')}}"></script>
+        <script src="{{url_for('static', filename='js/materializescript.js')}}"></script>
+</body>
+</html>

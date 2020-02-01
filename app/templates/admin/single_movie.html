@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ movie.movie_name }}</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='materialize/css/materialize.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/dosis-font.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='iconfont/material-icons.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='slick/slick.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='slick/slick-theme.css')}}">
+</head>
+<body class="grey lighten-4">
+
+<header class="navbar-fixed">
+  <nav class="blue darken-3">
+    <div class="nav-wrapper">
+      <div class="container">
+        <a href="#" class="brand-logo">Sentiment Based Movie Rating System</a>
+      
+        <a href="" data-activates="mobile-demo" class="button-collapse"><i class="material-icons white-text">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li class="waves-effect waves-light"><a href="{{url_for('admin.home')}}">Home</a></li>
+          <li class="waves-effect waves-light"><a href="{{url_for('admin.delete', movie_id=movie.id)}}">Delete</a></li>
+        </ul>
+    </div>
+    <ul class="side-nav" id="mobile-demo">
+      <li class="waves-effect waves-dark"><a href="{{url_for('admin.home')}}">Home</a></li>
+      <li class="waves-effect waves-light"><a href="{{url_for('admin.delete', movie_id=movie.id)}}">Delete</a></li>
+    </ul>
+  </div>
+</nav>
+</header>
+
+<div class="container">
+<div class="col s12 m7">
+    <div class="card">
+      <div class="card-image">
+        <img src="{{url_for('static', filename='movie_cover/'+movie.movie_photo)}}">
+      </div>
+      <div class="card-stacked small">
+        <div class="card-content">
+          <h5 class="blue-text">DESCRIPTION</h5>
+          <p>Genre: {{ movie.movie_genre }}</p><br>
+          <p1 class="grey-text">{{ movie.movie_desc }}</p1>
+        </div>
+        </div>
+        <div class="card-action">
+          {% if avg_rating == None%}
+            <h5> No rating available </h5>
+          {% else %}
+            <h6>Average Rating:{{ movie.avg_rating }}</h6>
+            <h6>Based on {{ nor }} review(s) </h6>
+            <div class="divider blue darken-3"></div>
+          {% endif %}
+          {% if comment != None %}
+          <a class="blue-text"><b></b>COMMENTS</a><br><br>
+          {% for comment in comments %}
+          <div class="col s12 m7">
+            <div class="card horizontal">
+              <div class="card-image">
+                <img src="">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <p>Posted by: {{ comment.posted_by}}</p>
+                  <div class="divider blue darken-3"></div>
+                  <p>{{ comment.comment }}</p><br>
+                  <p>{{ comment.rating }}</p><br>
+                  <p2>{{ comment.timestamp }}</p2><br>
+                </div>
+                <div class="card-action">
+                  <x-star-rating>
+                    <div class="star full"></div>
+                    <div class="star full"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                  </x-star-rating>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+          <br><br>
+
+                      </div>
+                   </div>
+                </div>
+             </div>
+           </div>
+         </div>
+      </div>
+    </div>
+  </div>
+    
+
+  <footer class="page-footer blue darken-3">
+    <div class="container">
+            <div class="center">
+              <h5>Department of Computer Science</h5><br>
+              <h5>Lagos State University </h5>
+            </div>
+           
+        <div class="footer-copyright">
+          <div class="container">
+             <div class="center"><h6>Copyright © 2019 </h6></div>
+          </div>
+        </div>
+     </div>
+</footer>
+
+
+
+<script src="{{url_for('static', filename='js/jquery-3.2.1.js')}}"></script>
+<script src="{{url_for('static', filename='materialize/js/materialize.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/materializescript.js')}}"></script>
+</body>
+</html>

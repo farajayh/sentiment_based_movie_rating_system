@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='materialize/css/materialize.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/dosis-font.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='iconfont/material-icons.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='slick/slick.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='slick/slick-theme.css')}}">
+</head>
+<body class="grey lighten-4">
+
+<header class="navbar-fixed">
+  <nav class="blue darken-3">
+    <div class="nav-wrapper">
+      <div class="container">
+        <a href="#" class="brand-logo">Sentiment Based Movies Rating System</a>
+      
+        <a href="" data-activates="mobile-demo" class="button-collapse"><i class="material-icons white-text">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li class="waves-effect waves-light"><a href="{{url_for('home.home')}}">Home</a></li>
+          <li><a href="{{url_for('auth.change_password')}}">Change Password</a></li>
+          <li><a href="{{url_for('auth.logout')}}">Log Out</a></li>
+        </ul>
+    </div>
+    <ul class="side-nav" id="mobile-demo">
+      <li class="waves-effect waves-light"><a href="{{url_for('home.home')}}">Home</a></li>
+      <li><a href="{{url_for('auth.change_password')}}">Change Password</a></li>
+      <li><a href="{{url_for('auth.logout')}}">Log Out</a></li>
+
+    </ul>
+  </div>
+</nav>
+</header>
+<main>
+<div class="container">
+<div class="row">
+  {% for movie in movies.items %}
+  <div class="col s12 l4 m6">
+    <div class="card">
+      <div class="card-image col s12 l12 m12" >
+        <img src="{{url_for('static', filename='movie_cover/'+movie.movie_photo)}}">
+      </div>
+      <div class="card-content">
+        <div class="center">
+        <h5><b>{{movie.movie_name}}</b></h5></div>
+        {% if avg_rating == None%}
+            <p3> No rating available </p3>
+        {% else %}
+            <p3>Average Rating:{{ movie.avg_rating }}</p3></br>
+            <p3>Based on {{ nor(movie.id ) }} review(s) </p3>
+        {% endif %}
+      </div>
+      <div class="card-action">
+        <div class="center">
+        <a class="waves-effect waves-light blue darken-3 btn" href="{{url_for('home.movie', movie_id=movie.id)}}">view</a>
+        </div> 
+        </div>
+        </div>
+       </div>
+  {% endfor %}
+
+    </div>
+    </div>
+
+    <ul class="pagination center-align">
+    <li {% if not movies.has_prev %}class="disabled"{% else %}class="waves-effect hoverable"{% endif %}>
+      <a href="{% if movies.has_prev %}{{url_for('home.home', page = movies.page - 1)}}{% else %}#{% endif %}"><i class="material-icons">chevron_left</i></a>
+    </li>
+    {% for p in movies.iter_pages() %}
+      {% if p %}
+        {% if p==movies.page %}
+          <li class="active  blue darken-3"><a href="{{ url_for('home.home', page = p)}}">{{ p }}</a></li>
+        {% else %}
+        <li class="waves-effect hoverable white"><a href="{{ url_for('home.home', page = p)}}">{{ p }}</a></liclass="waves-effect hoverable white">
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    <li {% if not movies.has_next %}class="disabled"{% else %}class="waves-effect hoverable"{% endif %}>
+      <a href="{% if movies.has_next %}{{url_for('home.home', page = movies.page + 1)}}{% else %}#{% endif %}"><i class="material-icons">chevron_right</i></a>
+    </li>
+    </ul>
+</main>    
+
+
+<footer class="page-footer blue darken-3">
+  <div class="container">
+          <div class="center">
+            <h5>Department of Computer Science</h5><br>
+            <h5>Lagos State University </h5>
+          </div>
+         
+      <div class="footer-copyright">
+        <div class="container">
+           <div class="center"><h6>Copyright © 2019 </h6></div>
+        </div>
+      </div>
+   </div>
+ </footer>
+ <script src="{{url_for('static', filename='js/jquery-3.2.1.js')}}"></script>
+ <script src="{{url_for('static', filename='materialize/js/materialize.min.js')}}"></script>
+ <script src="{{url_for('static', filename='js/materializescript.js')}}"></script>
+</body>
+</html>
